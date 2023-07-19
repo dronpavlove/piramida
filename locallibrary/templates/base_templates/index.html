@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+{% load i18n %}
+{% load static %}
+<html lang="ru">
+<head>
+    {%  block title %}
+    {%  endblock title %}
+    <meta charset="utf-8">
+    <meta name="description" content="Сайт товаров и услуг">
+    <meta name="keywords" content="мистика, гадание, предсказания, гороскоп">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"> 
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&subset=cyrillic" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery.arcticmodal-0.3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/simple.css' %}">
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <script src="https://use.fontawesome.com/6829f8ae76.js"></script>
+</head>
+<body>
+
+<header>
+    <article>
+        <img src="{% static 'img/logo.png' %}" class="logo">
+        <div class="contact">
+        	<span><i class="fa fa-envelope"></i> piramida@mail.ru</span>
+        	<span><i class="fa fa-skype"></i> PiramidaSky</span>
+        	<span><i class="fa fa-phone"></i> +7 (025) 708-02-09</span>
+        </div>
+        {% block page_name %}
+        {% endblock page_name %}
+        <p class="intro animated fadeInRight" style="margin: 0 0 0 auto;" align="right">Хотите сохранить то, что Вам дорого? <b> Хотите знать, что Вас ждёт?</b> Хотите получать в социальных сетях актуальную информацию о том, что интересно только вам? Тогда этот сайт именно для ВАС! </p>
+        <a class="button" href="#routes" style="margin: 0 0 0 auto;">Содержание страницы</a>
+    </article>
+</header>
+
+<section id="routes">
+    <article>
+            {%  block content %}
+                {# mian content #}
+            {% endblock content %}
+    </article>
+</section>
+
+<section id="contact">
+    <article>
+        <h2>Связаться с нами</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+        <ul class="list">
+        	<li>Ссылка 1</li>
+        	<li>Ссылка 2</li>
+        	<li>Ссылка 3</li>
+        	<li>Ссылка 4</li>
+        </ul>
+        <div class="contact">
+        	<span><i class="fa fa-envelope"></i>piramida@mail.ru</span>
+        	<span><i class="fa fa-skype"></i>PiramidaSky</span>
+        	<span><i class="fa fa-phone"></i> +7 (025) 708-02-09</span>
+        </div>
+    </article>
+</section>
+
+<footer>
+    <article class="clearfix">
+        <img src="{% static 'img/logo_footer.png' %}" class="logo_footer">
+        <div class="credits">2023 / Все права защищены</div>
+        <div class="location"><i class="fa fa-location-arrow"></i> Сейчас я в <span>Париже</span></div>
+        <div class="call">Звонить с 9 до 17</div>
+    </article>
+</footer>
+
+<div style="display: none;">
+    <div class="box-modal" id="exampleModal">
+        <div class="box-modal_close arcticmodal-close">закрыть</div>
+        <form action="{% static 'success.php' %}" method="post">
+			<p>Ваше имя:<br /><input placeholder="Имя" type="text" name="your_name"></p>
+			<p>E-mail:<br /><input type="text" name="email"></p>
+			<p>Тема:<br /><input type="text" name="tema"></p>
+			<p>Сообщение:<br />
+			<textarea name="message" rows="5" cols="45"> </textarea></p>
+			<p><input type="submit" value="Отправить"></p>
+		</form>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<!-- arcticModal -->
+<script src="{% static 'js/common.js' %}"></script>
+<script src="{% static 'js/jquery.arcticmodal-0.3.min.js' %}"></script>
+</body>
+</html>

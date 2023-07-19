@@ -1,0 +1,12 @@
+Collecting django
+  Downloading Django-4.2.3-py3-none-any.whl (8.0 MB)
+Collecting asgiref<4,>=3.6.0
+  Downloading asgiref-3.7.2-py3-none-any.whl (24 kB)
+Collecting backports.zoneinfo; python_version < "3.9"
+  Using cached backports.zoneinfo-0.2.1-cp38-cp38-manylinux1_x86_64.whl (74 kB)
+Collecting sqlparse>=0.3.1
+  Downloading sqlparse-0.4.4-py3-none-any.whl (41 kB)
+Collecting typing-extensions>=4; python_version < "3.11"
+  Downloading typing_extensions-4.7.1-py3-none-any.whl (33 kB)
+Installing collected packages: typing-extensions, asgiref, backports.zoneinfo, sqlparse, django
+Successfully installed asgiref-3.7.2 backports.zoneinfo-0.2.1 django-4.2.3 sqlparse-0.4.4 typing-extensions-4.7.1
