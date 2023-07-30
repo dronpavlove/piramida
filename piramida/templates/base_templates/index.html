@@ -23,7 +23,27 @@
 
 <header>
     <article>
-        <img src="{% static 'img/logo.png' %}" class="logo">
+        <div class="container-buttons">
+
+            <img src="{% static 'img/logo.png' %}" class="logo">
+
+          <div class="CartBlock">
+                <a class="CartBlock-block" href="/products/comparison/"><img class="CartBlock-img" src="{% static 'assets/img/icons/exchange.svg' %}" alt="exchange.svg"/>
+                  <span class="CartBlock-amount" id="compare_count_id">
+                    {{ count_product_compare }}
+                  </span></a>
+              <a class="CartBlock-block" href="/basket/"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="cart.svg"/>
+                  <span class="CartBlock-amount" id="basket_count_id">
+                    {{ count_product_in_basket }}
+                  </span></a>
+            <a class="CartBlock-block" href="/basket/"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="cart.svg"/>
+                <span id="subtotal" class="CartBlock-amount">4321{{ full_sum }}</span></a>
+<!--                <span id="h-subtotal" class="CartBlock-price">₽</span>-->
+
+          </div>
+
+        </div>
+
         <div class="contact">
         	<span><i class="fa fa-envelope"></i> piramida@mail.ru</span>
         	<span><i class="fa fa-skype"></i> PiramidaSky</span>
@@ -32,8 +52,15 @@
         {% block page_name %}
         {% endblock page_name %}
         <p class="intro animated fadeInRight" style="margin: 0 0 0 auto;" align="right">Хотите сохранить то, что Вам дорого? <b> Хотите знать, что Вас ждёт?</b> Хотите получать в социальных сетях актуальную информацию о том, что интересно только вам? Тогда этот сайт именно для ВАС! </p>
-        <a class="button" href="#routes" style="margin: 0 0 0 auto;">Содержание страницы</a>
+        <div class="container-buttons">
+            <a class="button" href="#routes">Ссылка 1</a>
+            <a class="button" href="#routes">Ссылка 2</a>
+            <a class="button" href="#routes">Ссылка 3</a>
+            <a class="button" href="#routes">Ссылка 4</a>
+            <a class="button" href="#routes">Ссылка 5</a>
+        </div>
     </article>
+
 </header>
 
 <section id="routes">

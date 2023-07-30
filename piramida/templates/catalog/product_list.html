@@ -3,29 +3,23 @@
 {% load static %}
 
 	{%  block title %}
-		<title>Каталог</title>
+		<title>{{ category }}</title>
 	{%  endblock title %}
 
 	{% block page_name %}
-		<h1 class="animated fadeInUp" align="right">Каталог товаров<br>и предоставляемых<br>услуг</h1>
+		<h2 class="animated fadeInUp" align="right">Каталог товаров<br>из категории<br>{{ category }}</h2>
 	{% endblock page_name %}
 
 	{%  block content %}
-		<h2>Каталог товаров и услуг</h2>
+		<h2>Категория: {{ category }}</h2>
         <div class="cards clearfix">
-<!--			{% for i in num %}-->
-<!--        	<div class="one">-->
-<!--        		<img src="{% static 'img/paris.png' %}">-->
-<!--        		<div class="title">Парыж</div>-->
-<!--        		<div class="desc">12 дней / Хостел / $299</div>-->
-<!--        		<a class="button2" onclick="$('#exampleModal').arcticmodal()">Подробнее</a>-->
-<!--        	</div>-->
-<!--			{% endfor %}-->
-			{% for object in categories %}
+			{% for object in products %}
 			<div class="one">
-        		<img src="{{ object.icon_photo.url }}" height="100%" width="100%">
-        		<div class="title">{{ object.category_name }}</div>
+        		<img src="{{ object.product_photo.first.photo.url }}" height="100%" width="100%">
+				<div class="title">{{ object.category.category_name }}</div>
+        		<div class="title">{{ object.name }}</div>
         		<div class="desc">{{ object.description }}</div>
+				<div class="desc">{{ object.price }}</div>
         		<a class="button2" onclick="$('#exampleModal').arcticmodal()">Подробнее</a>
         	</div>
 			{% endfor %}

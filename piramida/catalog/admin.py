@@ -92,7 +92,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "article", "category_view", "price",
+    list_display = ("name", "article",  "price",  # "category_view",
                     "rating_view", "flag_limit", "property_count_view", "amount")
     list_display_links = ("name", "article")
     list_editable = ("price",)
@@ -119,18 +119,18 @@ class ProductAdmin(admin.ModelAdmin):
     class Media:
         js = ('autocomplete_all/js/autocomplete_all.js', 'products/js/filter-props-by-category.js')
 
-    @staticmethod
-    @admin.display(description=_("категория каталога"))
-    def category_view(obj: Product):
-        """
-        Выводит ссылку на категорию каталога
-        """
-        return format_html(
-            '<a href="{}?pk={}">{}</a>',
-            reverse("admin:products_category_changelist"),
-            obj.category.pk,
-            obj.category.category_name
-        )
+    # @staticmethod
+    # @admin.display(description=_("категория каталога"))
+    # def category_view(obj: Product):
+    #     """
+    #     Выводит ссылку на категорию каталога
+    #     """
+    #     return format_html(
+    #         '<a href="{}?pk={}">{}</a>',
+    #         reverse("admin:category"),
+    #         obj.category.pk,
+    #         obj.category.category_name
+    #     )
 
     @staticmethod
     @admin.display(description=_("рэйтинг"))

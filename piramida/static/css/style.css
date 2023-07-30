@@ -17,9 +17,9 @@ ul {
 }
 
 header {
-	background: url(../img/first_bg.jpg);
+	background: url(../img/first_bg.jpg) no-repeat;
 	padding-top: 44px;
-	padding-bottom: 100px;
+	padding-bottom: 44px;
 }
 
 article {
@@ -66,6 +66,7 @@ h1 {
 	display: block;
 	width: 205px;
 	text-align: center;
+	padding: 10px;
 }
 
 .button:hover {
@@ -86,16 +87,74 @@ h2 {
 .one {
 	width: 270px;
 
-border-radius: 4px;
-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.36);
-margin-bottom: 30px;
-padding-bottom: 25px;
-float: left;
-margin-right: 30px;
--moz-transition: all 0.3s ease;
--webkit-transition-property: all;
--webkit-transition-duration: 0.3s;
--webkit-transition-timing-function: ease;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.36);
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    float: left;
+    margin-right: 30px;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.row-block {
+  display: block;
+
+  flex-grow: 0;
+  width: 100%;
+}
+
+.CartBlock-block + .CartBlock-block {
+  margin-left: 23px;
+}
+.CartBlock-block + .CartBlock-block .CartBlock-img {
+  margin-left: 41px;
+}
+
+.CartBlock {
+  display: flex;
+  align-items: center;
+}
+
+.CartBlock-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.CartBlock-amount {
+  background: #000000;
+  position: absolute;
+  right: -29px;
+  top: 0px;
+  min-width: 23px;
+  font-size: 15px;
+  letter-spacing: -0.6px;
+  font-weight: bold;
+  color: #fff;
+  padding: 2px;
+  line-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 100px;
+}
+
+.CartBlock-price {
+  font-size: 13px;
+  color: #777;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  display: block;
 }
 
 .one:hover {
@@ -211,4 +270,8 @@ footer article div:nth-child(4) {
 
 .location span {
 	color: #fbc646;
+}
+
+img {
+  border-style: none;
 }
