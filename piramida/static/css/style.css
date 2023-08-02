@@ -81,6 +81,8 @@ h2 {
 	margin: 67px 0px 55px 0px;
 	font-weight: 900;
 	font-size: 40px;
+	margin: 0 0 0 auto;
+	align: right;
 	text-transform: uppercase;
 }
 
@@ -102,59 +104,6 @@ h2 {
 .container-buttons {
   display: flex;
   justify-content: space-around;
-}
-
-.row-block {
-  display: block;
-
-  flex-grow: 0;
-  width: 100%;
-}
-
-.CartBlock-block + .CartBlock-block {
-  margin-left: 23px;
-}
-.CartBlock-block + .CartBlock-block .CartBlock-img {
-  margin-left: 41px;
-}
-
-.CartBlock {
-  display: flex;
-  align-items: center;
-}
-
-.CartBlock-block {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.CartBlock-amount {
-  background: #000000;
-  position: absolute;
-  right: -29px;
-  top: 0px;
-  min-width: 23px;
-  font-size: 15px;
-  letter-spacing: -0.6px;
-  font-weight: bold;
-  color: #fff;
-  padding: 2px;
-  line-height: 1.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 100px;
-}
-
-.CartBlock-price {
-  font-size: 13px;
-  color: #777;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  display: block;
 }
 
 .one:hover {

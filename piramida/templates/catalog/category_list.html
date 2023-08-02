@@ -7,7 +7,7 @@
 	{%  endblock title %}
 
 	{% block page_name %}
-		<h2 class="animated fadeInUp" align="right">Каталог товаров<br>и предоставляемых<br>услуг</h2>
+		<h2 class="animated fadeInUp" style="margin: 45px 0px 45px 665px;">Каталог товаров<br>и предоставляемых<br>услуг</h2>
 	{% endblock page_name %}
 
 	{%  block content %}
@@ -23,9 +23,9 @@
 <!--			{% endfor %}-->
 			{% for object in categories %}
 			<div class="one">
-        		<img src="{{ object.icon_photo.url }}" height="100%" width="100%">
+        		<img src="{{ object.icon_photo.url }}" height="270" width="270">
         		<div class="title">{{ object.category_name }}</div>
-        		<div class="desc">{{ object.description }}</div>
+        		<div class="desc" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ object.description }}</div>
 				<a class="button2" href="/catalog/{{ object.pk }}">Подробнее</a>
 <!--        		<a class="button2" onclick="$('#exampleModal').arcticmodal()">Подробнее</a>-->
         	</div>

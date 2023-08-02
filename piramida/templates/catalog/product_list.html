@@ -7,21 +7,99 @@
 	{%  endblock title %}
 
 	{% block page_name %}
-		<h2 class="animated fadeInUp" align="right">Каталог товаров<br>из категории<br>{{ category }}</h2>
+		<h2 class="animated fadeInUp" style="margin: 45px 0px 45px 665px;">Каталог товаров<br>из категории<br>{{ category }}</h2>
 	{% endblock page_name %}
 
 	{%  block content %}
 		<h2>Категория: {{ category }}</h2>
-        <div class="cards clearfix">
-			{% for object in products %}
-			<div class="one">
-        		<img src="{{ object.product_photo.first.photo.url }}" height="100%" width="100%">
-				<div class="title">{{ object.category.category_name }}</div>
-        		<div class="title">{{ object.name }}</div>
-        		<div class="desc">{{ object.description }}</div>
-				<div class="desc">{{ object.price }}</div>
-        		<a class="button2" onclick="$('#exampleModal').arcticmodal()">Подробнее</a>
-        	</div>
-			{% endfor %}
-        </div>
+<!--        <div class="cards clearfix">-->
+<!--			{% for object in products %}-->
+<!--			<div class="one">-->
+<!--        		<img src="{{ object.product_photo.first.photo.url }}" height="100%" width="100%">-->
+<!--				<div class="title">{{ object.category.category_name }}</div>-->
+<!--        		<div class="title">{{ object.name }}</div>-->
+<!--        		<div class="desc">{{ object.description }}</div>-->
+<!--				<div class="desc">{{ object.price }}</div>-->
+<!--        		<a class="button2" onclick="$('#exampleModal').arcticmodal()">Подробнее</a>-->
+<!--        	</div>-->
+<!--			{% endfor %}-->
+<!--        </div>-->
+
+{% for product in products %}
+<!--    <div class="Section-content">-->
+<!--        <div class="Card"><a class="Card-picture" href="{{ product.href }}"><img src="{{ product.photo.url }}" alt="card.jpg"/></a>-->
+<!--          <div class="Card-content">-->
+<!--            <strong class="Card-title"><a href="#">{{ product.name }}</a>-->
+<!--            </strong>-->
+<!--            <div class="Card-description">-->
+<!--              <div class="Card-cost"><span class="Card-priceOld">{{ product.old_price }}</span><span class="Card-price">{{ product.price }}</span>-->
+<!--              </div>-->
+<!--              <div class="Card-category">Digital / xbox-->
+<!--              </div>-->
+<!--              <div class="Card-hover">-->
+<!--                  <a class="Card-btn" href="#"><img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/></a>-->
+<!--                  <a class="Card-btn" href="#"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/></a>-->
+<!--                  <a class="Card-btn" href="#"><img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        <div class="Card-sale">{{ product.sale }}</div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+              <div class="Card">
+                <a class="Card-picture" href="/catalog/product/{{ product.pk }}">
+                  {% if product.product_photo %}
+                  <img src="{{ product.product_photo.first.photo.url }}" alt="{{ product.name }}"/>
+                  {% else %}
+                  <img src="{% static 'default.png' %}" alt="{{ product.name }}"/>
+                  {% endif %}
+                </a>
+                <div class="Card-content">
+                  <strong class="Card-title">
+                    <a href="/catalog/product/{{ product.pk }}" title="{{ product.name }}">
+                      {{ product.name }}
+                    </a>
+                  </strong>
+                  <div class="Card-description">
+                    <div class="Card-cost">
+                      <span class="Card-price">
+                        {{ product.price }} &#8381;
+                      </span>
+                    </div>
+                    <div class="Card-category">
+                        {{ product.category.category_name }}
+                        <a style="display: none" id="product-count_product_in_basket{{product.pk}}"><br>{ product_amount }}</a>
+                        <a style="display: none" id="product-discount-subotal{{product.pk}}"><br>{{ product_total_cost }}</a>
+<!--                        {% for i in product.product_photo.all %}-->
+<!--                        {{ i.photo.url }}-->
+<!--                        {% endfor %}-->
+                    </div>
+                    <div class="Card-hover">
+                      {% if product.product_photo %}
+                        <a class="Card-btn expand" href="{{ product.product_photo.all.0.photo.url }}">
+                        <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/></a>
+                      {% else %}
+                        <a class="Card-btn">
+                        <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/></a>
+                      {% endif %}
+
+                      <a class="Card-btn add-button add-button-pulse" data-product_id="{{product.id}}" data-action="add" data-csrf="{{ csrf_token }}">
+<!--                        <input class="Amount-input form-input select{{ product.pk }}" name="amount" type="hidden">-->
+                        <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                      </a>
+
+<!--                      <a class="Card-change add-compare" data-product="{{ product.id }}"-->
+<!--                                     data-key="{{ key }}" tabindex="{{ product.id }}">-->
+<!--                          <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>-->
+<!--                      </a>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+ {% endfor %}
+
 	{% endblock content %}

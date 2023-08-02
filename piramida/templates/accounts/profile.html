@@ -1,0 +1,152 @@
+{%  extends 'base_templates/index.html'  %}
+{% block title %}{{ _('Личный кабинет') }}{% endblock title %}
+{% block content %}
+  <div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title"> {{ _('Личный кабинет') }}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="/products/"> {{ _('Домой') }}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{{ _('Личный кабинет') }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section Section_column Section_columnLeft">
+      <div class="wrap">
+         {# НАВИГАЦИЯ #}
+          {% include 'base_templates/navigation.html' %}
+          {# ============ #}
+        <div class="Section-content">
+          <div class="Account">
+            <div class="Account-group">
+              <div class="Account-column">
+                <div class="Account-avatar">
+                    {% if client.photo %}
+                    <img src="{{ client.photo.url }}" alt="{{ client.user.username }}"/>
+                    {% else %}
+                       <img src="{{ static('assets/img/icons/user_icon_no_ava.svg') }}" alt="user_icon.svg"/>
+                    {% endif %}
+                </div>
+              </div>
+              <div class="Account-column">
+                <div class="Account-name">
+                        {{ client.user.last_name }} {{ client.user.first_name }}  {{ client.patronymic }} <br>({{ client.user.username }})
+                </div><a class="Account-editLink" href="{{ url('profile-edit', kwargs={'pk': request.user.pk }) }}">{{ _('Редактировать профиль') }}</a>
+              </div>
+            </div>
+              {%  if order_last %}
+              <header class="Section-header">
+                <h2 class="Section-title">{{ _('История заказов') }}</h2>
+              </header>
+
+                <div class="Account-group">
+                  <div class="Account-column Account-column_full">
+                      {% for order in order_last %}
+                        <div class="Order Order_anons">
+                        <div class="Order-personal">
+                        <div class="row">
+                          <div class="row-block"><a class="Order-title" href="{{ order.clients_check.url }}">{{ _('Заказ') }}&#32;<br><span class="Order-numberOrder">№{{ order.number_order }}</span>&#32;<br>{{ _('от') }}&#32;<span class="Order-dateOrder">{{ order.created_dt }}</span></a>
+                          </div>
+                          <div class="row-block">
+                            <div class="Order-info Order-info_delivery">
+                                {# Тут тоже когда будет доп инфа #}
+                              <div class="Order-infoType">{{ _('Тип доставки:') }}</div>
+                              <div class="Order-infoContent">{{ order.delivery }}</div>
+                            </div>
+                            <div class="Order-info Order-info_pay">
+                              <div class="Order-infoType">{{ _('Оплата:')}}</div>
+                                {% if order.status_pay == False %}
+                              <div class="Order-infoContent">{{ _('Ожидает подтверждение оплаты') }}</div>
+                                {% else %}
+                              <div class="Order-infoContent">{{ _('Оплата подтверждена') }}</div>
+                                {% endif %}
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                      {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                <header class="Section-header">
+                  <h2 class="Section-title">{{ _('История Заказов') }}
+                  </h2>
+                </header>
+                <div class="Cards Cards_account">
+                    <h3 class="Middle-title Title_no_order" >{{ _('Заказов еще нет') }}</h3>
+                </div>
+              {% endif %}
+
+              <div class="Account-editLink Account-editLink_view">
+                  <a href="{{ url('history_orders') }}">{{ _('Перейти на полный список заказов') }}</a>
+              </div>
+
+            <div class="Account-group">
+              <div class="Account-column Account-column_full">
+                <header class="Section-header">
+                  <h2 class="Section-title">{{ _('История просмотров') }}</h2>
+                </header>
+              {%  if list_item_views %}
+                <div class="Cards Cards_account">
+                    {% for item in list_item_views %}
+                        <div class="Card">
+                            <a class="Card-picture" href="{{ url('products:product-detail', kwargs = {'pk': item.pk}) }}">
+                                {# Тут выводим первую фотографию товара #}
+                                {% for photos in  item.product_photo.all() %}
+                                    {% if loop.first %}
+                                        <img src=" {{ photos.photo.url }}" alt="{{ photos.photo }} "/>
+                                    {% endif %}
+                                {% endfor %}
+                            </a>
+                          <div class="Card-content">
+                            <strong class="Card-title"><a href="{{ url('products:product-detail', kwargs = {'pk': item.pk}) }}">{{ item.name }}</a>
+                            </strong>
+                                <div class="Card-description">
+                                    <div class="Card-cost"></div>
+                                    <div class="Card-category">{{ item.category }}</div>
+                                    <div class="Card-hover">
+                                          {% if item.product_photo.count() %}
+                                            <a class="Card-btn expand" href="{{ item.product_photo.all()[0].photo.url }}">
+                                            <img src="{{ static('assets/img/icons/card/bookmark.svg')}}" alt="bookmark.svg"/></a>
+                                          {% else %}
+                                            <a class="Card-btn">
+                                            <img src="{{ static('assets/img/icons/card/bookmark.svg')}}" alt="bookmark.svg"/></a>
+                                          {% endif %}
+                                            <a class="Card-btn add-button add-button-pulse" data-product_id="{{ item.id }}" data-action="add">
+                                                <img src="{{ static('assets/img/icons/card/cart.svg') }}" alt="cart.svg"/>
+                                            </a>
+                                            <a class="Card-change add-compare" data-product="{{ item.id }}" data-key="{{ request.session.session_key }}">
+                                              <img src="{{ static('assets/img/icons/card/change.svg') }}" alt="change.svg"/>
+                                            </a>
+                                    </div>
+                                </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+              {% else %}
+                <h3 class="Middle-title">{{ _('Просмотренныех товаров еще нет!') }}</h3>
+              {% endif %}
+              </div>
+            </div>
+                <div class="Account-editLink Account-editLink_view">
+                  <a href="{{ url('history_user', kwargs={'pk': client.pk }) }}">{{ _('Перейти на полный список просмотренных товаров') }}</a>
+                </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+</div>
+
+{# Jinja2 токен csrf_token #}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+{% endblock %}

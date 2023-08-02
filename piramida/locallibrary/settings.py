@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig'
+    'catalog.apps.CatalogConfig',
+    'basket.apps.BasketConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +69,7 @@ TEMPLATES = [
                 'catalog.context_processors.main_menu_categories',
                 # 'promotions.context_processors.promotion_service',
                 'catalog.context_processors.getting_compare_info',
-                'catalog.context_processors.basket_client_info',
+                'basket.context_processors.basket_client_info',
             ],
         },
     },

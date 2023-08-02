@@ -21,6 +21,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')),
+    path("basket/", include("basket.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
 
 if settings.DEBUG:
