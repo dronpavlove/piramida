@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'basket.apps.BasketConfig',
     'accounts.apps.AccountsConfig',
+    'video_hosting.apps.VideoHostingConfig',
 ]
 
 MIDDLEWARE = [

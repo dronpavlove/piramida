@@ -23,6 +23,7 @@ urlpatterns = [
     path('catalog/', include('catalog.urls')),
     path("basket/", include("basket.urls")),
     path("accounts/", include("accounts.urls")),
+    path("video/", include("video_hosting.urls")),
 ]
 
 if settings.DEBUG:
