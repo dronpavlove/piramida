@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+<!--	<style type="text/css" >-->
+
+<!--	</style>-->
+
+	 <title> Рисование линий </title>
+</head>
+<body style="margin: 0;">
+
+		<input type="color" id="thecolor" value="#000000"/>
+		<div align="center">
+			<button id="but">
+				<select name = "size"  id="size"  required="required">
+					<option value="5">5</option>
+					<option value="8">8</option>
+					<option value="11">11</option>
+					<option value="14">14</option>
+					<option value="17">17</option>
+					<option value="20">20</option>
+					<option value="23">23</option>
+					<option value="26">26</option>
+					<option value="90">90</option>
+					<option value="200">200</option>
+				</select>
+			</button>
+		</div>
+
+
+		<div class="mm" id="13" align="center">
+
+			<img id="Non" data-fig="Non"  src="{% static 'img/k.png' %}" width="35" height="35" class="hover-image-scale">
+			<img id="line" data-fig="line"  src="{% static 'img/ln.png' %}" width="35" height="35">
+			<img id="circle" data-fig="circle"  src="{% static 'img/c.png' %}" width="35" height="35">
+			<img id="square" data-fig="square"  src="{% static 'img/sq.png' %}" width="35" height="35">
+			<img id="last" data-fig="last"  src="{% static 'img/s.png' %}" width="35" height="35">
+		</div>
+
+		<canvas id="can" width="1600" height="1400"></canvas>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<!--    <script src="/socket.io/socket.io.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+	<script src="{% static 'js/board_logic.js' %}"></script>
+<!--	<script type="text/javascript">-->
+
+<!--	</script>-->
+</body>
+</html>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'basket.apps.BasketConfig',
     'accounts.apps.AccountsConfig',
     'video_hosting.apps.VideoHostingConfig',
+    'board',
 ]
 
 MIDDLEWARE = [
@@ -92,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'piramida',
-        'USER': 'ivanov',
-        'PASSWORD': '261295',
+        'USER': 'petrov',
+        'PASSWORD': 'petrov261295',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
