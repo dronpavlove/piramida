@@ -9,6 +9,19 @@ $(function() {
     var but=document.getElementById("but");
     var restore = document.getElementById("restore");
 
+    $("#btn").change(function(e){
+        var URL = window.webkitURL || window.URL;
+        var url = URL.createObjectURL(e.target.files[0]);
+        var img = new Image();
+        var base64ImageData = can.toDataURL("image/png");
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0);
+            };
+        img.src = url;
+        image=img;
+    });
+
+
 //    function ToSockImg(){
 //        var img = new Image();
 //        var base64ImageData = can.toDataURL("image/png");
