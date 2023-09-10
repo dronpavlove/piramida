@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import F
 
-from basket.models import BasketClient
+from .models import BasketClient
 from catalog.models import Product
 
 

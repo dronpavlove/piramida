@@ -1,4 +1,4 @@
-from basket.models import BasketClient
+from .models import BasketClient
 from datetime import datetime, timedelta
 
 

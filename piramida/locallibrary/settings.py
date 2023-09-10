@@ -37,13 +37,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'catalog.apps.CatalogConfig',
     'basket.apps.BasketConfig',
     'accounts.apps.AccountsConfig',
     'video_hosting.apps.VideoHostingConfig',
     'board',
+    'chat.apps.ChatConfig',
 ]
 
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'asgiref.inmemory.ChannelLayer',
+#         'ROUTING': 'myproj.routing.channel_routing',
+#     },
+# }
+
+CHANNEL_LAYERS = {  # sudo docker run -p 6379:6379 -d redis:5
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.2', 6379)],
+        },
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,7 +95,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'locallibrary.wsgi.application'
-
+ASGI_APPLICATION = 'locallibrary.asgi.application'
+# ASGI_APPLICATION = 'locallibrary.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
